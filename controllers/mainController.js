@@ -376,12 +376,12 @@ exports.postRegister = (req, res) => {
                               if(err) console.log(err.message);
 
                               let transporter = nodemailer.createTransport({
-                                   host: "smtp.elasticemail.com",
+                                   host: "your-host",
                                    port: 2525,
                                    secure: false,
                                    auth: {
-                                     user: 'marvin.directobautista@gmail.com',
-                                     pass: 'D45AB4295D0EA021E959236C3D4C3F73D9F7',
+                                     user: 'yours@email.com',
+                                     pass: 'your-password',
                                      
                                    },
                                    tls: {
@@ -390,7 +390,7 @@ exports.postRegister = (req, res) => {
                               });
 
                               let info = transporter.sendMail({
-                                   from: 'marvin.directobautista@gmail.com', // sender address
+                                   from: 'yours@email.com', // sender address
                                    to: email, // list of receivers
                                    subject: 'Email verification | Acer PH', // Subject line
                                    text: user_key, // plain text body
