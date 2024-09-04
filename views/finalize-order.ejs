@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+     <head>
+          <meta charset="UTF-8">
+          <meta http-equiv="X-UA-Compatible" content="IE=edge">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <link rel="shortcut icon" href="../images/a-logo.png" type="image/x-icon">
+          <link rel="stylesheet" href="../css/finalize-order.css">
+          <title>Finalize Order | Acer</title>
+     </head>
+
+     <body>
+          <div class="navbar">
+               <div style="flex: 1;">
+                    <img class="logo" src="../images/acer.png">
+               </div>
+
+               <div style="flex: 1;">
+                    <div class="navigator"> 
+                         <a href="/home">
+                              <div class="nav-container">
+                                   <i class="fa-solid fa-house nav-icon"></i>
+                                   <span class="nav-label">Home</span>
+                              </div>
+                         </a>
+     
+                         <a href="/products">
+                              <div class="nav-container">
+                                   <i class="fa-solid fa-laptop nav-icon"></i>
+                                   <span class="nav-label">Products</span>
+                              </div>
+                         </a>
+     
+                         <a href="/orders">
+                              <div class="nav-container">
+                                   <% if(counter[0].count_order > 0) {%>
+                                        <div class="counter"><%= counter[0].count_order %> </div>
+                                   <% } %>
+                                   
+                                   <i class="fa-solid fa-cart-shopping nav-icon"></i>
+                                   <span class="nav-label">Orders</span>
+                              </div>
+                         </a>
+                    </div>
+               </div>
+
+               <div style="flex: 1; display: flex; justify-content: flex-end;">
+                    <div class="profile">
+                         <span class="name"><%= info[0].user_fname + " " + info[0].user_lname %></span>
+
+                         <a href="/logout">
+                              <div class="btn-logout">
+                                   <i class="fa-solid fa-right-from-bracket"></i>
+                              </div>
+                         </a>
+                    </div>
+               </div>
+          </div>
+
+          <div class="main-container">
+               <div class="order-form">
+                    <div class="heading-container">
+                         <div>
+                              <a onclick="history.back()">
+                                   <i class="fa-solid fa-chevron-left"></i>
+                                   <span>Back</span>
+                              </a>
+                         </div>
+
+
+                         <h1 class="heading">Finalize order</h1>
+                    </div>
+
+                    <div class="product-details-container">
+                         <img class="product-image" src="../uploads/<%= result[0].product_image %>">
+
+                         <div class="product-details">
+                              <h1 class="product-name"><%= result[0].product_name %></h1>
+                              <p class="category"><%= result[0].category_desc %></p>
+
+                              <p class="desc"><%= result[0].product_desc %></p>
+
+                              <div class="final-form">
+                                   <p class="product-price">Php. <%= result[0].product_price %></p>
+
+                                   <p class="qty">Qty.</p>
+
+                                   <form action="/orders" method="POST">
+                                        <div class="qty-input-container">
+                                             <input type="hidden" name="product_id" value="<%= result[0].product_id %>">
+
+                                             <input type="number" class="qty-input" name="qty_input" step="1" min="1" name="qty" id="qty" value="1">
+
+                                             <input type="submit" class="finalize-btn" value="FINALIZE">
+                                        </div>
+                                   </form>
+                              </div>
+                         </div>
+                    </div>
+               </div>
+          </div>
+
+          <div class="footer">
+               <div class="legal">
+                    <img class="logo" src="../images/acer.png" alt="" srcset="">
+
+                    <p class="legal-heading">© Copyright | All Rights Reserved <%= new Date().getFullYear() %></p>
+
+                    <div class="links-container">
+                         <a href="https://www.acer.com/ph-en/privacy" class="legal-links">Privacy</a>
+
+                         <a href="https://www.acer.com/ph-en/privacy/cookie-policy" class="legal-links">Cookie Policy</a>
+
+                         <a href="https://www.acer-group.com/ag/en/TW/content/legal-english" class="legal-links">Legal Notice</a>
+
+                         <a href="https://www.acer.com/ph-en/privacy/additional-legal-information" class="legal-links">Additional Legal Information</a>
+                    </div>
+
+               </div>
+
+               <div class="socials">
+                    <p class="legal-heading">Like and follow us!</p>
+
+                    <div class="social-links">
+                         <a href="https://www.facebook.com/AcerPH" target="_blank">
+                              <div><i class="fa-brands fa-facebook"></i></div>
+                         </a>
+
+                         <a href="https://www.instagram.com/Acer/" target="_blank">
+                              <div><i class="fa-brands fa-instagram"></i></div>
+                         </a>
+
+                         <a href="https://twitter.com/acer" target="_blank">
+                              <div><i class="fa-brands fa-twitter"></i></div>
+                         </a>
+
+                         <a href="https://www.youtube.com/user/acer" target="_blank" rel="">
+                              <div><i class="fa-brands fa-youtube"></i></div>
+                         </a>
+                    </div>
+               </div>
+          </div>
+     </body>
+     <script src="https://kit.fontawesome.com/091cd4a75a.js" crossorigin="anonymous"></script>
+</html>

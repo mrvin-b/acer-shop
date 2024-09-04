@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="shortcut icon" href="../images/a-logo.png" type="image/x-icon">
+     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css">
+     <link rel="stylesheet" href="../css/admin-home.css">
+     <title>Featured products | Admin</title>
+</head>
+<body>
+     <div class="sidebar">
+          <div class="navbar">
+               <img class="logo" src="../images/acer.png">
+
+               <h3>Administrator</h3>
+
+               <div class="navigator">
+                    <div class="nav-item"><a href="/admin/home">Products</a></div>
+
+                    <div class="nav-item active"><a href="/admin/featured-products">Featured products</a></div>
+
+                    <div class="nav-item"><a href="/admin/categories">Categories</a></div>
+                    
+                    <div class="nav-item"><a href="/admin/client-orders">Orders</a></div>
+
+                    <div class="nav-item"><a href="/admin/client-users">Users</a></div>
+
+                    <div class="nav-item"><a href="/admin/logout">Logout</a></div>
+               </div>
+          </div>
+     </div>
+
+     <div class="main-container">
+          <div class="header-container">
+               <h1>Featured products</h1>
+          </div>
+
+          <% if(deleted != '') {%> 
+               <div class="deleted-container">
+                    <div>
+                         <i class="fa-solid fa-trash"></i>
+                    </div>
+
+                    <div>
+                         <p><%= deleted %></p>
+                    </div>
+               </div>
+          <% } %> 
+
+          <div class="table-container">
+               <table id="table" class="display">
+                    <thead>
+                         <tr>
+                              <th>ID</th>
+                              <th>Image</th>
+                              <th>Name</th>
+                              <th>Category</th>
+                              <th>Description</th>
+                              <th>Price</th>
+                              <th>Actions</th>
+                         </tr>
+                    </thead>
+
+                    <tbody>
+                         <% for(var i = 0; i < products.length; i++) { %>
+                              <tr>
+                                   <td><%= products[i].product_id %></td>
+                                   <td><img class="product-image" src="../uploads/<%= products[i].product_image %> "></td>
+                                   <td><p class="details"><%= products[i].product_name %></p></td>
+                                   <td><p class="details"><%= products[i].category_desc %></p></td>
+                                   <td><p class="product-desc"><%= products[i].product_desc %></p></td>
+                                   <td><p class="details"><%= products[i].product_price %></p></td>
+                                   <td>                          
+                                        <form action="/admin/featured-products" method="POST">
+                                             <input type="hidden" name="p_id" value=<%= products[i].product_id %>>
+
+                                             <button type="submit" class="btn-del" name="btn-del" onclick="return confirm('Are you sure you want to delete this item?')"><i class="fa-solid fa-trash"></i></button>
+                                        </form>
+                                   </td>
+                              </tr>
+                         <% } %>
+                    </tbody>
+               </table>
+          </div>
+     </div>
+
+     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+     <script src="https://kit.fontawesome.com/091cd4a75a.js" crossorigin="anonymous"></script>
+     <script>
+          $(document).ready( function () {
+               $('#table').DataTable();
+          });
+     </script>
+</body>
+</html>

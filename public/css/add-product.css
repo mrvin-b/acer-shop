@@ -1,0 +1,126 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
+* {
+     margin: 0;
+     padding: 0;
+     font-family: 'Poppins';
+}
+
+body {
+     display: flex;
+     flex-flow: row nowrap;
+     justify-content: space-between;
+     align-items: flex-start;
+}
+
+.sidebar {
+     flex: 1;
+     background: #363636;
+     height: 100vh;
+     display: flex;
+     flex-flow: column nowrap;
+     align-items: center;
+     justify-content: space-between;
+}
+
+.navbar {
+     display: flex;
+     flex-flow: column nowrap;
+     justify-content: flex-start;
+     align-items: center;
+     width: 100%;
+     margin: 2rem;
+}
+
+.logo {
+     height: 2rem;
+}
+
+h3 {
+     color: #ffffff;
+     margin-top: 1rem;
+     font-weight: 600;
+}
+
+.navigator {
+     display: flex;
+     flex-flow: column nowrap;
+     justify-content: flex-start;
+     align-items: center;
+     gap: 0.3rem;
+     margin: 0.3rem;
+     width: 80%;
+     margin-top: 2rem;
+     color: #ffffff;
+}
+
+.active {
+     background: #797979;
+}
+
+.nav-item {
+     width: 100%;
+     padding: 0.3rem 1rem;
+     border-radius: 0.5rem;
+     display: flex;
+     align-items: center;
+     justify-content: flex-start;
+     flex-flow: row nowrap;
+}
+
+a {
+     text-decoration: none;
+     color: #ffffff;
+}
+
+
+.main-container {
+     flex: 4;
+     padding: 2rem 4rem;
+}
+
+.header-container {
+     display: flex;
+     flex-flow: row wrap;
+     justify-content: flex-start;
+     align-items: center;
+     gap: 1rem;
+     margin: 0 2rem;
+}
+
+.form-container {
+     margin-top: 3rem;
+}
+
+.form-label {
+     font-weight: 600;
+     color: #363636;
+     font-size: 0.8rem;
+}
+
+.form-input {
+     padding: 0.3rem 0.5rem;
+     outline: none;
+     border: 1px solid #cccccc;
+     border-radius: 0.3rem;
+     width: 15rem;
+}
+
+.t-space {
+     margin-top: 1rem;
+}
+
+.btn-submit {
+     margin-top: 1rem;
+     background: #83B81A;
+     color: #ffffff;
+     padding: 0.5rem 1rem;
+     border-radius: 0.5rem;
+     border: none;
+     width: 15rem;
+}
+
+.back-btn {
+     color: #83B81A;
+}

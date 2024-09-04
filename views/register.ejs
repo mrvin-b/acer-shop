@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+     <head>
+          <meta charset="UTF-8">
+          <meta http-equiv="X-UA-Compatible" content="IE=edge">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <link rel="shortcut icon" href="../images/a-logo.png" type="image/x-icon">
+          <link rel="stylesheet" href="../css/login.css">
+          <title>Register | Acer</title>
+     </head>
+     
+     <body>
+          <div class="form-container">
+               <img src="../images/acer.png" class="logo" alt="acer-logo">
+               <h1>Register</h1>
+
+               <% if(error != '') {%>
+                    <div class="err-container">
+                         <p class="err-message"><%= error %></p>
+                    </div>
+               <% } %> 
+
+               <form action="/register" method="POST">
+                    <div>
+                         <input type="email" name="email" id="email" class="form-control" placeholder="Email" required>
+                    </div>
+          
+                    <div>
+                         <input type="text" name="fname" id="fname" class="form-control" placeholder="First name" required>
+                    </div>
+
+                    <div>
+                         <input type="text" name="lname" id="lname" class="form-control" placeholder="Last name" required>
+                    </div>
+          
+                    <div>
+                         <input type="password" name="password" id="password" class="form-control" placeholder="Password" required>
+                    </div>
+          
+                    <div>
+                         <input type="submit" value="REGISTER" class="btn-login">
+                    </div>
+               </form>
+
+               <div >
+                    <p class="reg-text">Already have an account? <a class="btn-reg" href="/login">Login</a></p>
+               </div>
+          </div>
+     </body>
+</html>

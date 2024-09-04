@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="shortcut icon" href="../images/a-logo.png" type="image/x-icon">
+     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css">
+     <link rel="stylesheet" href="../css/admin-home.css">
+     <title>Client users | Admin</title>
+</head>
+<body>
+     <div class="sidebar">
+          <div class="navbar">
+               <img class="logo" src="../images/acer.png">
+
+               <h3>Administrator</h3>
+
+               <div class="navigator">
+                    <div class="nav-item"><a href="/admin/home">Products</a></div>
+
+                    <div class="nav-item"><a href="/admin/featured-products">Featured products</a></div>
+
+                    <div class="nav-item"><a href="/admin/categories">Categories</a></div>
+                    
+                    <div class="nav-item"><a href="/admin/client-orders">Orders</a></div>
+
+                    <div class="nav-item active"><a href="/admin/client-users">Users</a></div>
+
+                    <div class="nav-item"><a href="/admin/logout">Logout</a></div>
+               </div>
+          </div>
+     </div>
+
+     <div class="main-container">
+          <div class="header-container">
+               <h1>Client orders</h1>
+          </div>
+
+          <% if(deleted != '') {%> 
+               <div class="deleted-container">
+                    <div>
+                         <i class="fa-solid fa-ban"></i>
+                    </div>
+
+                    <div>
+                         <p><%= deleted %></p>
+                    </div>
+               </div>
+          <% } %> 
+
+          <% if(added != '') {%> 
+               <div class="added-container">
+                    <div>
+                         <i class="fa-solid fa-check"></i>
+                    </div>
+
+                    <div>
+                         <p><%= added %></p>
+                    </div>
+               </div>
+          <% } %> 
+
+          <div class="table-container">
+               <table id="table" class="display">
+                    <thead>
+                         <tr>
+                              <th>ID</th>
+                              <th>Name</th>
+                              <th>Email</th>
+                              <th>Verified</th>
+                              <th>Account status</th>
+                              <th>Actions</th>
+                         </tr>
+                    </thead>
+
+                    <tbody>
+                         <% for(var i = 0; i < result.length; i++) { %>
+                              <tr>
+                                   <td><%= result[i].user_id %></td>
+                                   <td><p class="details"><%= result[i].user_fname + " " + result[i].user_lname %></p></td>
+                                   <td><p class="details"><%= result[i].user_email %></p></td>
+                                   <td><p class="details"><% if(result[i].user_isVerified == 0){ %>Unverified<% } else if(result[i].user_isVerified == 1) {%>Verified<% } %></p></td>
+                                   <td><p class="details"><% if(result[i].user_isBanned == 0){ %>Active<% } else if(result[i].user_isBanned == 1) {%>Banned<% } %></p></p></td>
+                                   <td>
+                                        <% if(result[i].user_isBanned== 0) {%>  
+                                             <form action="/admin/ban-user" method="POST">
+                                                  <input type="hidden" name="user_id" value=<%= result[i].user_id %>>
+
+                                                  <button type="submit" class="btn-del" name="btn-del" onclick="return confirm('Are you sure you want to ban this user?')"><i class="fa-solid fa-ban"></i></button>
+                                             </form>
+                                        <% } %>
+
+                                        <% if(result[i].user_isBanned== 1) {%>  
+                                             <form action="/admin/undo-action" method="POST">
+                                                  <input type="hidden" name="user_id" value=<%= result[i].user_id %>>
+
+                                                  <button type="submit" class="btn-edit" name="btn-del" onclick="return confirm('Are you sure you want to undo the action to this user?')"><i class="fa-solid fa-arrow-rotate-left"></i></button>
+                                             </form>
+                                        <% } %>
+                                   </td>
+                              </tr>
+                         <% } %>
+                    </tbody>
+               </table>
+          </div>
+     </div>
+
+     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script>
+     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+     <script src="https://kit.fontawesome.com/091cd4a75a.js" crossorigin="anonymous"></script>
+     <script>
+          $(document).ready( function () {
+               $('#table').DataTable();
+          });
+     </script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+     <head>
+          <meta charset="UTF-8">
+          <meta http-equiv="X-UA-Compatible" content="IE=edge">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <link rel="shortcut icon" href="../images/a-logo.png" type="image/x-icon">
+          <link rel="stylesheet" href="../css/verify.css">
+          <title>Verify account | Acer</title>
+     </head>
+     <body>
+          <div>
+               <img class="logo" src="../images/acer.png" alt="acer logo">
+          </div>
+
+          <% if(auth) { %>
+               <div>
+                    <h1>Account verified!</h1>
+                    <p>Your account is already verified. You can now log in.</p>
+          
+                    <br>
+                    <br>
+     
+                    <p class="proceed">Proceed to <a class="btn-reg" href="/">Login</a>.</p>
+               </div>
+          <% } else if(auth == false){ %>
+               <div>
+                    <h1>Oh snap!</h1>
+                    <p>The link has already been user or broken.</p>
+          
+                    <br>
+                    <br>
+     
+                    <p class="proceed">Back to <a class="btn-reg" href="/">Login</a>.</p>
+               </div>
+          <% } %>
+     </body>
+</html>
